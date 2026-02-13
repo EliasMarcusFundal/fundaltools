@@ -1,21 +1,29 @@
 import { useState, useEffect } from "react";
 
 /* ══════════════════════════════════════════════════════════
-   CONFIGURATION — Update these values before deploying
+   CONFIGURATION
    ══════════════════════════════════════════════════════════ */
 
-// STEP 1: Replace with your Lemonsqueezy checkout URLs
-// Create products at https://app.lemonsqueezy.com → Store → Products
 const CHECKOUT = {
-  starter:  "https://fundalmedia.lemonsqueezy.com/checkout/buy/YOUR_STARTER_ID",
-  growth:   "https://fundalmedia.lemonsqueezy.com/checkout/buy/YOUR_GROWTH_ID",
-  scale:    "https://fundalmedia.lemonsqueezy.com/checkout/buy/YOUR_SCALE_ID",
-  // Template products — create one per template in Lemonsqueezy
-  template: (id) => `https://fundalmedia.lemonsqueezy.com/checkout/buy/TEMPLATE_${id}`,
+  starter: "https://fundalmedia.lemonsqueezy.com/checkout/buy/57f63ef7-92af-4c78-90a9-644fd8bef26e",
+  growth: "https://fundalmedia.lemonsqueezy.com/checkout/buy/36296305-309b-47c0-a4bd-34446ce6ba8d",
+  scale: "https://fundalmedia.lemonsqueezy.com/checkout/buy/a14e3f78-66cd-4ca1-9187-db8a5eb21d24",
+  generator: "https://fundalmedia.lemonsqueezy.com/checkout/buy/a0e4cccc-7c35-417c-a1a6-6b12339b28e1",
+  template: (id) => {
+    const map = {
+      1: "https://fundalmedia.lemonsqueezy.com/checkout/buy/6d3cc82c-bc59-4b5c-ab0c-f993f300d23a",
+      2: "https://fundalmedia.lemonsqueezy.com/checkout/buy/9539c6b3-e03f-4230-98e5-96385f5a7281",
+      3: "https://fundalmedia.lemonsqueezy.com/checkout/buy/2e670e33-e4c7-425f-bc35-52516792ad9d",
+      4: "https://fundalmedia.lemonsqueezy.com/checkout/buy/c5a841b8-7b6a-4d25-bd9d-e565d3ba4d56",
+      5: "https://fundalmedia.lemonsqueezy.com/checkout/buy/5f79a1be-3cf0-407d-90ea-51dc99637c36",
+      6: "https://fundalmedia.lemonsqueezy.com/checkout/buy/2b0f9cfb-c451-4b59-9e16-61319d42374e",
+      7: "https://fundalmedia.lemonsqueezy.com/checkout/buy/382302b7-3703-481f-8b77-0f88a17e81f1",
+      8: "https://fundalmedia.lemonsqueezy.com/checkout/buy/1d5822f7-9cca-49c6-ba9a-c737910aa1c8",
+    };
+    return map[id];
+  },
 };
 
-// STEP 2: For AI generator — your Vercel serverless API route handles this
-// See /api/generate.js — never expose API keys in frontend code
 const API_URL = "/api/generate";
 
 /* ── DATA ── */
@@ -114,7 +122,6 @@ export default function FundalTools() {
     setLoading(true); setCopies([]);
     
     try {
-      // Try real API first
       const resp = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -124,11 +131,9 @@ export default function FundalTools() {
         const data = await resp.json();
         setCopies(data.copies);
       } else {
-        // Fallback to local generation
         setCopies(generateCopy(cfg));
       }
     } catch {
-      // API not available (local dev) — use mock
       setCopies(generateCopy(cfg));
     }
     
@@ -171,12 +176,10 @@ export default function FundalTools() {
         * { box-sizing: border-box; margin: 0; padding: 0; }
         ::selection { background: #B8860B20; }
 
-        /* ANIMATIONS */
         .fi { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .fi.on { opacity: 1; transform: translateY(0); }
         .d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}.d4{transition-delay:.28s}.d5{transition-delay:.35s}
 
-        /* NAV */
         .topbar {
           position: sticky; top: 0; z-index: 50;
           background: #FAFAF7EE; backdrop-filter: blur(20px);
@@ -226,7 +229,6 @@ export default function FundalTools() {
 
         .ham { display: none; background: none; border: none; color: var(--text-secondary); cursor: pointer; }
 
-        /* BUTTONS */
         .btn-dark {
           display: inline-flex; align-items: center; gap: 8px;
           background: var(--bg-dark); color: #fff;
@@ -258,7 +260,6 @@ export default function FundalTools() {
         }
         .btn-gold:hover { box-shadow: 0 4px 24px #B8860B30; transform: translateY(-1px); }
 
-        /* CARDS */
         .tcard {
           background: var(--bg-card); border: 1px solid var(--border-light);
           border-radius: 12px; padding: 28px;
@@ -266,7 +267,6 @@ export default function FundalTools() {
         }
         .tcard:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.06); border-color: var(--border); transform: translateY(-3px); }
 
-        /* INPUT */
         .ipt {
           background: var(--bg-card); border: 1.5px solid var(--border);
           color: var(--text); padding: 13px 16px;
@@ -283,7 +283,6 @@ export default function FundalTools() {
         }
         select.ipt option { background: #fff; }
 
-        /* TAGS */
         .ftag {
           background: var(--bg-card); border: 1.5px solid var(--border);
           color: var(--text-secondary); padding: 8px 18px;
@@ -294,11 +293,9 @@ export default function FundalTools() {
         .ftag:hover { border-color: var(--text-secondary); color: var(--text); }
         .ftag.on { background: var(--bg-dark); color: #fff; border-color: var(--bg-dark); }
 
-        /* SHIMMER */
         .shim { background: linear-gradient(90deg, #F0EEE8 25%, #E8E6E0 50%, #F0EEE8 75%); background-size: 200% 100%; animation: shim 1.5s infinite; border-radius: 6px; }
         @keyframes shim { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 
-        /* POPULAR */
         .pop-pill {
           background: var(--bg-dark); color: #fff;
           font-family: var(--sans); font-size: 10px; font-weight: 700;
@@ -314,7 +311,6 @@ export default function FundalTools() {
           letter-spacing: 0.04em;
         }
 
-        /* MOBILE */
         .mob-overlay {
           position: fixed; inset: 0; z-index: 100;
           background: #FAFAF7F5; backdrop-filter: blur(32px);
@@ -395,7 +391,6 @@ export default function FundalTools() {
                   </div>
                   <button className="btn-dark" style={{ width: "100%", justifyContent: "center", padding: "16px 30px" }}
                     onClick={() => {
-                      // Opens checkout for first item — for multi-item, use Lemonsqueezy's cart overlay
                       if (cart.length > 0) window.open(CHECKOUT.template(cart[0].id), "_blank");
                     }}>Checkout</button>
                 </div>
@@ -613,9 +608,16 @@ export default function FundalTools() {
                 <div style={{ background: "var(--bg-card)", border: "1px solid var(--border-light)", borderRadius: 14, padding: "clamp(24px, 4vw, 36px)" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 28 }}>
                     <span style={{ fontSize: 14, fontWeight: 700 }}>Configure</span>
-                    <span style={{ fontSize: 12, fontWeight: 600, color: freeGens > 0 ? "var(--gold)" : "#c44" }}>
-                      {freeGens > 0 ? `${freeGens} free generations left` : "Upgrade for unlimited"}
-                    </span>
+                    {freeGens > 0 ? (
+                      <span style={{ fontSize: 12, fontWeight: 600, color: "var(--gold)" }}>
+                        {freeGens} free generation{freeGens !== 1 ? "s" : ""} left
+                      </span>
+                    ) : (
+                      <button className="btn-gold" style={{ padding: "8px 16px", fontSize: 11, borderRadius: 6 }}
+                        onClick={() => window.open(CHECKOUT.generator, "_blank")}>
+                        Upgrade for Unlimited
+                      </button>
+                    )}
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
                     <div>
@@ -644,12 +646,19 @@ export default function FundalTools() {
                       <label style={{ fontSize: 12, fontWeight: 600, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>Website URL <span style={{ color: "var(--text-muted)", fontWeight: 400 }}>(optional)</span></label>
                       <input className="ipt" placeholder="e.g. noirgaze.com" value={cfg.url} onChange={e => setCfg({ ...cfg, url: e.target.value })} />
                     </div>
-                    <button className="btn-dark" style={{ width: "100%", justifyContent: "center", marginTop: 4, padding: "15px 30px" }}
-                      disabled={!cfg.brandName || !cfg.product || freeGens <= 0 || loading}
-                      onClick={doGen}>
-                      <SparkIcon />
-                      {loading ? "Generating..." : "Generate Ad Copy"}
-                    </button>
+                    {freeGens > 0 ? (
+                      <button className="btn-dark" style={{ width: "100%", justifyContent: "center", marginTop: 4, padding: "15px 30px" }}
+                        disabled={!cfg.brandName || !cfg.product || loading}
+                        onClick={doGen}>
+                        <SparkIcon />
+                        {loading ? "Generating..." : "Generate Ad Copy"}
+                      </button>
+                    ) : (
+                      <button className="btn-gold" style={{ width: "100%", justifyContent: "center", marginTop: 4, padding: "15px 30px" }}
+                        onClick={() => window.open(CHECKOUT.generator, "_blank")}>
+                        Unlock Unlimited Generations — €29/mo
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -697,7 +706,10 @@ export default function FundalTools() {
                       <p style={{ fontSize: 14, color: "#9e9890", lineHeight: 1.65, marginBottom: 20 }}>
                         These templates give you the structure. Our agency gives you the performance. Let's talk about scaling your brand with managed paid ads.
                       </p>
-                      <button className="btn-gold" style={{ fontSize: 12 }}>Book a Strategy Call <ArrowRight /></button>
+                      <button className="btn-gold" style={{ fontSize: 12 }}
+                        onClick={() => window.open("https://www.fundalmedia.dk/#book", "_blank")}>
+                        Book a Strategy Call <ArrowRight />
+                      </button>
                     </div>
                   </div>
                 ) : (
