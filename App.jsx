@@ -4,24 +4,27 @@ import { useState, useEffect } from "react";
    CONFIGURATION
    ══════════════════════════════════════════════════════════ */
 
+// Stripe checkout — calls /api/checkout.js serverless function
+async function stripeCheckout(priceKey, mode = "payment") {
+  try {
+    const resp = await fetch("/api/checkout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ priceKey, mode }),
+    });
+    const data = await resp.json();
+    if (data.url) window.location.href = data.url;
+  } catch (err) {
+    alert("Checkout is temporarily unavailable. Please try again.");
+  }
+}
+
 const CHECKOUT = {
-  starter: "https://fundalmedia.lemonsqueezy.com/checkout/buy/57f63ef7-92af-4c78-90a9-644fd8bef26e",
-  growth: "https://fundalmedia.lemonsqueezy.com/checkout/buy/36296305-309b-47c0-a4bd-34446ce6ba8d",
-  scale: "https://fundalmedia.lemonsqueezy.com/checkout/buy/a14e3f78-66cd-4ca1-9187-db8a5eb21d24",
-  generator: "https://fundalmedia.lemonsqueezy.com/checkout/buy/a0e4cccc-7c35-417c-a1a6-6b12339b28e1",
-  template: (id) => {
-    const map = {
-      1: "https://fundalmedia.lemonsqueezy.com/checkout/buy/6d3cc82c-bc59-4b5c-ab0c-f993f300d23a",
-      2: "https://fundalmedia.lemonsqueezy.com/checkout/buy/9539c6b3-e03f-4230-98e5-96385f5a7281",
-      3: "https://fundalmedia.lemonsqueezy.com/checkout/buy/2e670e33-e4c7-425f-bc35-52516792ad9d",
-      4: "https://fundalmedia.lemonsqueezy.com/checkout/buy/c5a841b8-7b6a-4d25-bd9d-e565d3ba4d56",
-      5: "https://fundalmedia.lemonsqueezy.com/checkout/buy/5f79a1be-3cf0-407d-90ea-51dc99637c36",
-      6: "https://fundalmedia.lemonsqueezy.com/checkout/buy/2b0f9cfb-c451-4b59-9e16-61319d42374e",
-      7: "https://fundalmedia.lemonsqueezy.com/checkout/buy/382302b7-3703-481f-8b77-0f88a17e81f1",
-      8: "https://fundalmedia.lemonsqueezy.com/checkout/buy/1d5822f7-9cca-49c6-ba9a-c737910aa1c8",
-    };
-    return map[id];
-  },
+  starter: () => stripeCheckout("starter", "subscription"),
+  growth: () => stripeCheckout("growth", "subscription"),
+  scale: () => stripeCheckout("scale", "subscription"),
+  generator: () => stripeCheckout("generator", "subscription"),
+  template: (id) => stripeCheckout(`template_${id}`),
 };
 
 const API_URL = "/api/generate";
@@ -391,7 +394,7 @@ export default function FundalTools() {
                   </div>
                   <button className="btn-dark" style={{ width: "100%", justifyContent: "center", padding: "16px 30px" }}
                     onClick={() => {
-                      if (cart.length > 0) window.open(CHECKOUT.template(cart[0].id), "_blank");
+                      if (cart.length > 0) CHECKOUT.template(cart[0].id);
                     }}>Checkout</button>
                 </div>
               </>
@@ -537,7 +540,7 @@ export default function FundalTools() {
                     ))}
                   </ul>
                   <button className={pl.popular ? "btn-dark" : "btn-outline"} style={{ width: "100%", justifyContent: "center" }}
-                    onClick={() => window.open(CHECKOUT[pl.name.toLowerCase()], "_blank")}>Start Free Trial</button>
+                    onClick={() => CHECKOUT[pl.name.toLowerCase()]()}>Start Free Trial</button>
                 </div>
               ))}
             </div>
@@ -614,7 +617,7 @@ export default function FundalTools() {
                       </span>
                     ) : (
                       <button className="btn-gold" style={{ padding: "8px 16px", fontSize: 11, borderRadius: 6 }}
-                        onClick={() => window.open(CHECKOUT.generator, "_blank")}>
+                        onClick={() => CHECKOUT.generator()}>
                         Upgrade for Unlimited
                       </button>
                     )}
@@ -655,7 +658,7 @@ export default function FundalTools() {
                       </button>
                     ) : (
                       <button className="btn-gold" style={{ width: "100%", justifyContent: "center", marginTop: 4, padding: "15px 30px" }}
-                        onClick={() => window.open(CHECKOUT.generator, "_blank")}>
+                        onClick={() => CHECKOUT.generator()}>
                         Unlock Unlimited Generations — €29/mo
                       </button>
                     )}
