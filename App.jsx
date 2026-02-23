@@ -477,15 +477,15 @@ export default function FundalTools() {
                 <span style={{ fontSize: 12, fontWeight: 600, color: "var(--gold)", letterSpacing: "0.06em", textTransform: "uppercase" }}>Trusted By</span>
                 <h2 style={{ fontFamily: "var(--serif)", fontSize: "clamp(24px, 3vw, 34px)", fontWeight: 400, marginTop: 8, letterSpacing: "-0.02em" }}>Fashion brands we've scaled</h2>
               </div>
-              <div style={{ overflow: "hidden", position: "relative" }}>
-                <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to right, var(--bg), transparent)", zIndex: 2 }} />
-                <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to left, var(--bg), transparent)", zIndex: 2 }} />
+              <div style={{ background: "var(--bg-dark)", borderRadius: 14, padding: "32px 0", overflow: "hidden", position: "relative" }}>
+                <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to right, var(--bg-dark), transparent)", zIndex: 2 }} />
+                <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to left, var(--bg-dark), transparent)", zIndex: 2 }} />
                 <style>{`
                   @keyframes logoScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-                  .logo-scroll { display: flex; gap: 40px; animation: logoScroll 35s linear infinite; align-items: center; }
+                  .logo-scroll { display: flex; gap: 48px; animation: logoScroll 35s linear infinite; align-items: center; }
                   .logo-scroll:hover { animation-play-state: paused; }
-                  .partner-img { height: 45px; max-width: 140px; object-fit: contain; opacity: 0.65; transition: opacity 0.3s; filter: grayscale(100%); }
-                  .partner-img:hover { opacity: 1; filter: grayscale(0%); }
+                  .partner-img { height: 40px; max-width: 130px; object-fit: contain; opacity: 0.7; transition: opacity 0.3s; filter: brightness(0) invert(1); }
+                  .partner-img:hover { opacity: 1; }
                 `}</style>
                 <div className="logo-scroll">
                   {[...Array(2)].map((_, rep) => [
@@ -525,7 +525,7 @@ export default function FundalTools() {
                   @keyframes resultScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
                   .result-scroll { display: flex; gap: 16px; animation: resultScroll 45s linear infinite; align-items: center; }
                   .result-scroll:hover { animation-play-state: paused; }
-                  .result-thumb { width: 260px; height: 180px; border-radius: 10px; object-fit: cover; flex-shrink: 0; border: 1px solid var(--border); transition: transform 0.3s; }
+                  .result-thumb { width: 200px; height: 140px; border-radius: 10px; object-fit: contain; flex-shrink: 0; background: #fff; border: 1px solid var(--border); padding: 6px; transition: transform 0.3s; }
                   .result-thumb:hover { transform: scale(1.03); }
                 `}</style>
                 <div className="result-scroll">
@@ -584,38 +584,42 @@ export default function FundalTools() {
 
             {/* PRESS / AS SEEN IN */}
             <section style={{ paddingBottom: "clamp(48px, 8vh, 80px)" }}>
-              <div style={{ textAlign: "center", marginBottom: 28 }}>
-                <span style={{ fontSize: 12, fontWeight: 600, color: "var(--text-muted)", letterSpacing: "0.06em", textTransform: "uppercase" }}>As Seen In</span>
-              </div>
-              <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "clamp(24px, 4vw, 48px)", flexWrap: "wrap" }}>
-                {[
-                  { src: "https://i.postimg.cc/59LVym0J/SALLY_SKOUFIS_Logo_Allure_medium.avif", alt: "Allure" },
-                  { src: "https://i.postimg.cc/CMkg541h/SALLY_SKOUFIS_Logo_Elle_medium.avif", alt: "Elle" },
-                  { src: "https://i.postimg.cc/0j8bLvDp/SALLY-SKOUFIS-Logo-Vogue-medium.avif", alt: "Vogue" },
-                  { src: "https://i.postimg.cc/qByTqGRd/SALLY_SKOUFIS_Logo_PFW_medium.avif", alt: "Paris Fashion Week" },
-                  { src: "https://i.postimg.cc/tRWjJzTX/SALLY_SKOUFIS_Logo_Vanity_Fair_medium.avif", alt: "Vanity Fair" },
-                ].map((p, i) => (
-                  <img key={i} src={p.src} alt={p.alt} style={{ maxWidth: 120, maxHeight: 40, objectFit: "contain", opacity: 0.5, transition: "opacity 0.3s" }} onMouseOver={e => e.target.style.opacity = 1} onMouseOut={e => e.target.style.opacity = 0.5} />
-                ))}
+              <div style={{ background: "var(--bg-dark)", borderRadius: 14, padding: "36px 40px" }}>
+                <div style={{ textAlign: "center", marginBottom: 28 }}>
+                  <span style={{ fontSize: 12, fontWeight: 600, color: "#888580", letterSpacing: "0.06em", textTransform: "uppercase" }}>As Seen In</span>
+                </div>
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "clamp(24px, 4vw, 48px)", flexWrap: "wrap" }}>
+                  {[
+                    { src: "https://i.postimg.cc/59LVym0J/SALLY_SKOUFIS_Logo_Allure_medium.avif", alt: "Allure" },
+                    { src: "https://i.postimg.cc/CMkg541h/SALLY_SKOUFIS_Logo_Elle_medium.avif", alt: "Elle" },
+                    { src: "https://i.postimg.cc/0j8bLvDp/SALLY-SKOUFIS-Logo-Vogue-medium.avif", alt: "Vogue" },
+                    { src: "https://i.postimg.cc/qByTqGRd/SALLY_SKOUFIS_Logo_PFW_medium.avif", alt: "Paris Fashion Week" },
+                    { src: "https://i.postimg.cc/tRWjJzTX/SALLY_SKOUFIS_Logo_Vanity_Fair_medium.avif", alt: "Vanity Fair" },
+                  ].map((p, i) => (
+                    <img key={i} src={p.src} alt={p.alt} style={{ maxWidth: 120, maxHeight: 40, objectFit: "contain", opacity: 0.6, transition: "opacity 0.3s", filter: "brightness(0) invert(1)" }} onMouseOver={e => { e.target.style.opacity = 1; }} onMouseOut={e => { e.target.style.opacity = 0.6; }} />
+                  ))}
+                </div>
               </div>
             </section>
 
             {/* PLATFORMS */}
             <section style={{ paddingBottom: "clamp(48px, 8vh, 80px)" }}>
-              <div style={{ textAlign: "center", marginBottom: 28 }}>
-                <span style={{ fontSize: 12, fontWeight: 600, color: "var(--text-muted)", letterSpacing: "0.06em", textTransform: "uppercase" }}>Platforms We Master</span>
-              </div>
-              <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "clamp(24px, 4vw, 48px)", flexWrap: "wrap" }}>
-                {[
-                  { src: "https://i.postimg.cc/Z5zkNSpf/pngimg-com-meta-PNG7.png", alt: "Meta" },
-                  { src: "https://i.postimg.cc/9FkQBZgW/Pinterest_svg.png", alt: "Pinterest" },
-                  { src: "https://i.postimg.cc/xTZ1PMpf/snapchat_logo_snapchat_logo_transparent_snapchat_icon_transparent_free_free_png.webp", alt: "Snapchat" },
-                  { src: "https://i.postimg.cc/NjrfCFSZ/tiktok_logo_tikok_icon_transparent_tikok_app_logo_free_png.webp", alt: "TikTok" },
-                  { src: "https://i.postimg.cc/Kjjq69LM/klaviyo_logo_white.webp", alt: "Klaviyo" },
-                  { src: "https://i.postimg.cc/65Y6LT5N/Google-Ad-Words-logo.png", alt: "Google Ads" },
-                ].map((p, i) => (
-                  <img key={i} src={p.src} alt={p.alt} style={{ maxWidth: 100, maxHeight: 36, objectFit: "contain", opacity: 0.45, transition: "opacity 0.3s" }} onMouseOver={e => e.target.style.opacity = 1} onMouseOut={e => e.target.style.opacity = 0.45} />
-                ))}
+              <div style={{ background: "var(--bg-dark)", borderRadius: 14, padding: "36px 40px" }}>
+                <div style={{ textAlign: "center", marginBottom: 28 }}>
+                  <span style={{ fontSize: 12, fontWeight: 600, color: "#888580", letterSpacing: "0.06em", textTransform: "uppercase" }}>Platforms We Master</span>
+                </div>
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "clamp(24px, 4vw, 48px)", flexWrap: "wrap" }}>
+                  {[
+                    { src: "https://i.postimg.cc/Z5zkNSpf/pngimg-com-meta-PNG7.png", alt: "Meta" },
+                    { src: "https://i.postimg.cc/9FkQBZgW/Pinterest_svg.png", alt: "Pinterest" },
+                    { src: "https://i.postimg.cc/xTZ1PMpf/snapchat_logo_snapchat_logo_transparent_snapchat_icon_transparent_free_free_png.webp", alt: "Snapchat" },
+                    { src: "https://i.postimg.cc/NjrfCFSZ/tiktok_logo_tikok_icon_transparent_tikok_app_logo_free_png.webp", alt: "TikTok" },
+                    { src: "https://i.postimg.cc/Kjjq69LM/klaviyo_logo_white.webp", alt: "Klaviyo" },
+                    { src: "https://i.postimg.cc/65Y6LT5N/Google-Ad-Words-logo.png", alt: "Google Ads" },
+                  ].map((p, i) => (
+                    <img key={i} src={p.src} alt={p.alt} style={{ maxWidth: 100, maxHeight: 36, objectFit: "contain", opacity: 0.6, transition: "opacity 0.3s", filter: "brightness(0) invert(1)" }} onMouseOver={e => { e.target.style.opacity = 1; }} onMouseOut={e => { e.target.style.opacity = 0.6; }} />
+                  ))}
+                </div>
               </div>
             </section>
 
