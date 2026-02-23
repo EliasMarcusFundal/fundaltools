@@ -482,9 +482,9 @@ export default function FundalTools() {
                 <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to left, var(--bg-dark), transparent)", zIndex: 2 }} />
                 <style>{`
                   @keyframes logoScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-                  .logo-scroll { display: flex; gap: 48px; animation: logoScroll 35s linear infinite; align-items: center; }
+                  .logo-scroll { display: flex; gap: 48px; animation: logoScroll 20s linear infinite; align-items: center; }
                   .logo-scroll:hover { animation-play-state: paused; }
-                  .partner-img { height: 40px; max-width: 130px; object-fit: contain; opacity: 0.7; transition: opacity 0.3s; filter: brightness(0) invert(1); }
+                  .partner-img { height: 40px; max-width: 130px; object-fit: contain; opacity: 0.85; transition: opacity 0.3s; }
                   .partner-img:hover { opacity: 1; }
                 `}</style>
                 <div className="logo-scroll">
@@ -523,7 +523,7 @@ export default function FundalTools() {
                 <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 60, background: "linear-gradient(to left, var(--bg), transparent)", zIndex: 2 }} />
                 <style>{`
                   @keyframes resultScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-                  .result-scroll { display: flex; gap: 16px; animation: resultScroll 45s linear infinite; align-items: center; }
+                  .result-scroll { display: flex; gap: 16px; animation: resultScroll 25s linear infinite; align-items: center; }
                   .result-scroll:hover { animation-play-state: paused; }
                   .result-thumb { width: 200px; height: 140px; border-radius: 10px; object-fit: contain; flex-shrink: 0; background: #fff; border: 1px solid var(--border); padding: 6px; transition: transform 0.3s; }
                   .result-thumb:hover { transform: scale(1.03); }
@@ -596,7 +596,7 @@ export default function FundalTools() {
                     { src: "https://i.postimg.cc/qByTqGRd/SALLY_SKOUFIS_Logo_PFW_medium.avif", alt: "Paris Fashion Week" },
                     { src: "https://i.postimg.cc/tRWjJzTX/SALLY_SKOUFIS_Logo_Vanity_Fair_medium.avif", alt: "Vanity Fair" },
                   ].map((p, i) => (
-                    <img key={i} src={p.src} alt={p.alt} style={{ maxWidth: 120, maxHeight: 40, objectFit: "contain", opacity: 0.6, transition: "opacity 0.3s", filter: "brightness(0) invert(1)" }} onMouseOver={e => { e.target.style.opacity = 1; }} onMouseOut={e => { e.target.style.opacity = 0.6; }} />
+                    <img key={i} src={p.src} alt={p.alt} style={{ maxWidth: 120, maxHeight: 40, objectFit: "contain", opacity: 0.7, transition: "opacity 0.3s" }} onMouseOver={e => { e.target.style.opacity = 1; }} onMouseOut={e => { e.target.style.opacity = 0.7; }} />
                   ))}
                 </div>
               </div>
@@ -617,7 +617,7 @@ export default function FundalTools() {
                     { src: "https://i.postimg.cc/Kjjq69LM/klaviyo_logo_white.webp", alt: "Klaviyo" },
                     { src: "https://i.postimg.cc/65Y6LT5N/Google-Ad-Words-logo.png", alt: "Google Ads" },
                   ].map((p, i) => (
-                    <img key={i} src={p.src} alt={p.alt} style={{ maxWidth: 100, maxHeight: 36, objectFit: "contain", opacity: 0.6, transition: "opacity 0.3s", filter: "brightness(0) invert(1)" }} onMouseOver={e => { e.target.style.opacity = 1; }} onMouseOut={e => { e.target.style.opacity = 0.6; }} />
+                    <img key={i} src={p.src} alt={p.alt} style={{ maxWidth: 100, maxHeight: 36, objectFit: "contain", opacity: 0.7, transition: "opacity 0.3s" }} onMouseOver={e => { e.target.style.opacity = 1; }} onMouseOut={e => { e.target.style.opacity = 0.7; }} />
                   ))}
                 </div>
               </div>
