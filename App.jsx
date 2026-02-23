@@ -154,6 +154,87 @@ export default function FundalTools() {
     { id: "generator", l: "AI Copy Generator" },
   ];
 
+  /* ── SHARED SECTIONS (FAQ + Guarantee) ── */
+  const faqData = {
+    home: [
+      { q: "Is the AI Copy Generator really free?", a: "Yes. You get 3 free generations with no signup required. If you want unlimited access, the plan is €29/month." },
+      { q: "Who is this for?", a: "Fashion brands running their own ads or with a small marketing team. Whether you sell luxury, streetwear, sustainable fashion, activewear, or accessories — the frameworks are built specifically for fashion e-commerce." },
+      { q: "What do I actually get with the templates?", a: "Each template includes ready-to-use files for Shopify and/or Klaviyo, plus copy frameworks and implementation notes. You can deploy them within hours, not weeks." },
+      { q: "How is the Creative Library different from the Template Shop?", a: "The Template Shop is one-time purchases — you buy a specific template you need. The Creative Library is a monthly subscription that gives you fresh ad copy templates, campaign frameworks, UGC scripts, and strategies every month." },
+      { q: "Can I cancel the Creative Library subscription anytime?", a: "Yes. No contracts, no commitments. Cancel from your Stripe dashboard whenever you want." },
+      { q: "What if a template doesn't work for my brand?", a: "Every template and subscription comes with a 14-day money-back guarantee. If it doesn't fit your brand, we'll refund you — no questions asked." },
+      { q: "Do I need technical skills to use the templates?", a: "Basic familiarity with Shopify or Klaviyo is enough. The templates come with step-by-step setup instructions. If you can copy-paste, you can use them." },
+      { q: "How are these different from generic templates I find online?", a: "Every template and framework is built from real campaigns across 100+ fashion brands and €2.1M+/month in ad spend. Generic templates are designed for any e-commerce — ours are built exclusively for fashion buying behavior." },
+    ],
+    library: [
+      { q: "What do I get each month?", a: "A fresh drop of ad copy templates, campaign frameworks, UGC scripts, and creative strategies. Each drop contains 4+ resources built from the same systems we use for managed clients." },
+      { q: "Can I cancel anytime?", a: "Yes. No contracts, no minimum commitment. Cancel from your Stripe dashboard whenever you want — you'll keep access until the end of your billing period." },
+      { q: "What's the difference between Starter, Growth, and Scale?", a: "Every plan includes the full monthly resource drops. Higher tiers add live workshops, custom template requests, UGC script templates, and 1-on-1 monthly reviews." },
+      { q: "Do I get access to past drops?", a: "Yes. When you subscribe, you get access to the full archive of previous monthly drops — not just the latest one." },
+      { q: "How is this different from hiring an agency?", a: "An agency manages everything for you at €5,000+/month. The Creative Library gives you the same type of creative systems and templates to execute yourself, starting at €49/month." },
+      { q: "What if it's not for me?", a: "Every subscription comes with a 14-day money-back guarantee. If it's not what you expected, we'll refund you — no questions asked." },
+    ],
+    templates: [
+      { q: "What format are the templates in?", a: "Each template specifies its format — Shopify Liquid for landing pages, Klaviyo-ready HTML for email flows, and copy docs for ad campaigns. Everything is plug-and-play." },
+      { q: "Can I use these with my existing Shopify theme?", a: "Yes. The landing page templates work alongside any Shopify theme. The email flow templates work with any Klaviyo account." },
+      { q: "Do I need a developer to install them?", a: "No. Each template comes with step-by-step setup instructions. If you can copy-paste into Shopify or Klaviyo, you can set them up yourself." },
+      { q: "Are these one-time purchases?", a: "Yes. Pay once, use forever. No recurring fees, no hidden charges." },
+      { q: "Can I customize the templates for my brand?", a: "Absolutely. Every template is designed to be customized — swap in your brand colors, images, copy, and product details." },
+      { q: "What if a template doesn't work for my brand?", a: "14-day money-back guarantee. If it doesn't fit your needs, we'll refund you — no questions asked." },
+    ],
+    generator: [
+      { q: "Is it really free?", a: "Yes. 3 free generations, no signup, no credit card. You can start generating copy right now." },
+      { q: "What happens after 3 free generations?", a: "You can upgrade to unlimited generations for €29/month. Same frameworks, no limits." },
+      { q: "What makes this different from ChatGPT?", a: "ChatGPT uses generic copy frameworks. Our AI uses fashion-specific frameworks built from €2.1M+/month in managed ad spend across 100+ fashion brands. The output is structured for fashion buying behavior." },
+      { q: "What ad types can I generate copy for?", a: "Single product ads, collection launches, brand stories, retargeting, sale promotions, and new arrivals. Each type uses a different framework optimized for that specific campaign goal." },
+      { q: "Can I use the generated copy directly in my Meta ads?", a: "Yes. The copy is formatted and ready to paste directly into Facebook/Instagram Ads Manager." },
+      { q: "What if I want the full done-for-you service?", a: "We offer full agency management starting from €700/month. Book a strategy call from the homepage." },
+    ],
+  };
+
+  const FAQSection = ({ pageKey }) => (
+    <section style={{ paddingBottom: "clamp(48px, 8vh, 80px)", padding: "0 36px clamp(48px, 8vh, 80px)" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 40 }}>
+          <span style={{ fontSize: 12, fontWeight: 600, color: "var(--gold)", letterSpacing: "0.06em", textTransform: "uppercase" }}>FAQ</span>
+          <h2 style={{ fontFamily: "var(--serif)", fontSize: "clamp(24px, 3vw, 34px)", fontWeight: 400, marginTop: 8, letterSpacing: "-0.02em" }}>Common questions</h2>
+        </div>
+        <div style={{ maxWidth: 680, margin: "0 auto" }}>
+          {(faqData[pageKey] || faqData.home).map((item, i) => (
+            <details key={i} style={{ borderBottom: "1px solid var(--border)", cursor: "pointer" }}>
+              <summary style={{ padding: "20px 0", fontSize: 15, fontWeight: 600, color: "var(--text)", listStyle: "none", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                {item.q}
+                <span style={{ fontSize: 20, color: "var(--text-muted)", flexShrink: 0, marginLeft: 16 }}>+</span>
+              </summary>
+              <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.7, paddingBottom: 20, paddingRight: 40 }}>{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+
+  const GuaranteeSection = () => (
+    <section style={{ paddingBottom: "clamp(48px, 8vh, 80px)", padding: "0 36px clamp(48px, 8vh, 80px)" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+        <div style={{ background: "var(--bg-warm)", border: "1px solid var(--border)", borderRadius: 16, padding: "clamp(32px, 5vw, 56px)", display: "flex", alignItems: "center", gap: "clamp(24px, 4vw, 48px)", flexWrap: "wrap", justifyContent: "center" }}>
+          <div style={{ width: 80, height: 80, borderRadius: "50%", background: "var(--bg-dark)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#D4A020" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
+          </div>
+          <div style={{ maxWidth: 480 }}>
+            <h3 style={{ fontFamily: "var(--serif)", fontSize: "clamp(22px, 3vw, 28px)", fontWeight: 400, marginBottom: 8 }}>14-Day Money-Back Guarantee</h3>
+            <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.7 }}>
+              Every template and subscription comes with a 14-day no-questions-asked refund policy. If it doesn't work for your brand, you get your money back. We've been in this industry for 10+ years — we stand behind everything we sell.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+
   return (
     <div style={{ minHeight: "100vh", background: "var(--bg)", color: "var(--text)", fontFamily: "var(--sans)" }}>
       <style>{`
@@ -596,7 +677,7 @@ export default function FundalTools() {
                     { src: "https://i.postimg.cc/qByTqGRd/SALLY_SKOUFIS_Logo_PFW_medium.avif", alt: "Paris Fashion Week" },
                     { src: "https://i.postimg.cc/tRWjJzTX/SALLY_SKOUFIS_Logo_Vanity_Fair_medium.avif", alt: "Vanity Fair" },
                   ].map((p, i) => (
-                    <img key={i} src={p.src} alt={p.alt} style={{ maxWidth: 120, maxHeight: 40, objectFit: "contain", opacity: 0.7, transition: "opacity 0.3s" }} onMouseOver={e => { e.target.style.opacity = 1; }} onMouseOut={e => { e.target.style.opacity = 0.7; }} />
+                    <img key={i} src={p.src} alt={p.alt} style={{ maxWidth: 120, maxHeight: 40, objectFit: "contain", opacity: 0.6, transition: "opacity 0.3s", filter: "brightness(0) invert(1)" }} onMouseOver={e => { e.target.style.opacity = 1; }} onMouseOut={e => { e.target.style.opacity = 0.6; }} />
                   ))}
                 </div>
               </div>
@@ -622,6 +703,9 @@ export default function FundalTools() {
                 </div>
               </div>
             </section>
+
+            <FAQSection pageKey="home" />
+            <GuaranteeSection />
 
             {/* TRUST / CTA */}
             <section style={{ paddingBottom: "clamp(80px, 12vh, 130px)", textAlign: "center" }}>
@@ -696,6 +780,8 @@ export default function FundalTools() {
                 </div>
               ))}
             </div>
+            <FAQSection pageKey="library" />
+            <GuaranteeSection />
           </div>
         )}
 
@@ -741,6 +827,8 @@ export default function FundalTools() {
                 </div>
               ))}
             </div>
+            <FAQSection pageKey="templates" />
+            <GuaranteeSection />
           </div>
         )}
 
@@ -879,6 +967,8 @@ export default function FundalTools() {
                 )}
               </div>
             </div>
+            <FAQSection pageKey="generator" />
+            <GuaranteeSection />
           </div>
         )}
       </main>
