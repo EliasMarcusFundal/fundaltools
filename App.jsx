@@ -471,6 +471,154 @@ export default function FundalTools() {
               </div>
             </section>
 
+            {/* PARTNER LOGOS — scrolling */}
+            <section style={{ paddingBottom: "clamp(48px, 8vh, 80px)" }}>
+              <div style={{ textAlign: "center", marginBottom: 32 }}>
+                <span style={{ fontSize: 12, fontWeight: 600, color: "var(--gold)", letterSpacing: "0.06em", textTransform: "uppercase" }}>Trusted By</span>
+                <h2 style={{ fontFamily: "var(--serif)", fontSize: "clamp(24px, 3vw, 34px)", fontWeight: 400, marginTop: 8, letterSpacing: "-0.02em" }}>Fashion brands we've scaled</h2>
+              </div>
+              <div style={{ overflow: "hidden", position: "relative" }}>
+                <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to right, var(--bg), transparent)", zIndex: 2 }} />
+                <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to left, var(--bg), transparent)", zIndex: 2 }} />
+                <style>{`
+                  @keyframes logoScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+                  .logo-scroll { display: flex; gap: 40px; animation: logoScroll 35s linear infinite; align-items: center; }
+                  .logo-scroll:hover { animation-play-state: paused; }
+                  .partner-img { height: 45px; max-width: 140px; object-fit: contain; opacity: 0.65; transition: opacity 0.3s; filter: grayscale(100%); }
+                  .partner-img:hover { opacity: 1; filter: grayscale(0%); }
+                `}</style>
+                <div className="logo-scroll">
+                  {[...Array(2)].map((_, rep) => [
+                    { src: "https://i.postimg.cc/qRS9pC07/IMG_6636.avif", alt: "Partner" },
+                    { src: "https://i.postimg.cc/dVSf0MmT/Artboard_1.jpg", alt: "Partner" },
+                    { src: "https://i.postimg.cc/QdnzMLkq/Pi7_397179549_298150843083995_5352500705917452769_n_(1).jpg", alt: "Partner" },
+                    { src: "https://i.postimg.cc/3xbqwMCB/Pi7_503553251_18363645805195064_6239171449997780780_n.jpg", alt: "Partner" },
+                    { src: "https://i.postimg.cc/7ZQRLvM2/Pi7_525872873_18281272717286881_2987190861713955_n.jpg", alt: "Partner" },
+                    { src: "https://i.postimg.cc/0yH4Ngd6/Pi7_AMAI_AMARA_LOGO_removebg_preview.webp", alt: "Amai Amara" },
+                    { src: "https://i.postimg.cc/qvZF7fXx/Pi7_DWEGO_LOGO_removebg_preview_(1).png", alt: "Dwego" },
+                    { src: "https://i.postimg.cc/y8rGNqX0/Pi7_etannalogo_540x.png", alt: "Etanna" },
+                    { src: "https://i.postimg.cc/zGPQfmS7/Pi7_Isabel_Moore_Logo_2023_Z_Horizontal_09_Black_(1).webp", alt: "Isabel Moore" },
+                    { src: "https://i.postimg.cc/mg6nrxNQ/Pi7_Group_40.png", alt: "Partner" },
+                    { src: "https://i.postimg.cc/g2B709q8/Pi7_likia_logo_256x64.webp", alt: "Likia" },
+                    { src: "https://i.postimg.cc/6p1PQsLr/Pi7_logo_viba_hor.png", alt: "Viba" },
+                    { src: "https://i.postimg.cc/4xF03CbY/Pi7_logomoncianera_31217f2b_ce91_4534_8104_e8f4b2a78a3e_(1).webp", alt: "Monica Nera" },
+                    { src: "https://i.postimg.cc/vmgNgP36/Pi7_prla_black_140x_2x.png", alt: "Perla" },
+                    { src: "https://i.postimg.cc/Cx62KyHD/Pi7_Proche_logo_final_01_1_Copy_540x.png", alt: "Proche" },
+                    { src: "https://i.postimg.cc/GmSfp0JH/Pi7_Sort_logo_360x.png", alt: "Partner" },
+                  ].map((logo, i) => (
+                    <img key={`${rep}-${i}`} src={logo.src} alt={logo.alt} className="partner-img" style={{ flexShrink: 0 }} />
+                  ))).flat()}
+                </div>
+              </div>
+            </section>
+
+            {/* RESULTS — scrolling gallery */}
+            <section style={{ paddingBottom: "clamp(48px, 8vh, 80px)" }}>
+              <div style={{ textAlign: "center", marginBottom: 32 }}>
+                <span style={{ fontSize: 12, fontWeight: 600, color: "var(--gold)", letterSpacing: "0.06em", textTransform: "uppercase" }}>Proven Results</span>
+                <h2 style={{ fontFamily: "var(--serif)", fontSize: "clamp(24px, 3vw, 34px)", fontWeight: 400, marginTop: 8, letterSpacing: "-0.02em" }}>Real numbers from real campaigns</h2>
+              </div>
+              <div style={{ overflow: "hidden", position: "relative" }}>
+                <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 60, background: "linear-gradient(to right, var(--bg), transparent)", zIndex: 2 }} />
+                <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 60, background: "linear-gradient(to left, var(--bg), transparent)", zIndex: 2 }} />
+                <style>{`
+                  @keyframes resultScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+                  .result-scroll { display: flex; gap: 16px; animation: resultScroll 45s linear infinite; align-items: center; }
+                  .result-scroll:hover { animation-play-state: paused; }
+                  .result-thumb { width: 260px; height: 180px; border-radius: 10px; object-fit: cover; flex-shrink: 0; border: 1px solid var(--border); transition: transform 0.3s; }
+                  .result-thumb:hover { transform: scale(1.03); }
+                `}</style>
+                <div className="result-scroll">
+                  {[...Array(2)].map((_, rep) => [
+                    "https://i.postimg.cc/26SzhNL9/Skærmbillede_2026_01_30_kl_12_52_40.png",
+                    "https://i.postimg.cc/4d2X12pP/Skærmbillede_2026_01_30_kl_12_52_45.png",
+                    "https://i.postimg.cc/HxvTtvbB/Skærmbillede_2026_01_30_kl_12_52_49.png",
+                    "https://i.postimg.cc/B67JC72N/Skærmbillede_2026_01_30_kl_12_52_53.png",
+                    "https://i.postimg.cc/hjtSTRQ5/Skærmbillede_2026_01_30_kl_12_53_05.png",
+                    "https://i.postimg.cc/fLRwmQSg/Skærmbillede_2026_01_30_kl_12_53_10.png",
+                    "https://i.postimg.cc/wvj6LYRf/Skærmbillede_2026_01_30_kl_12_53_22.png",
+                    "https://i.postimg.cc/jj5fbDZM/1.jpg",
+                    "https://i.postimg.cc/W3qJdQRZ/2.jpg",
+                    "https://i.postimg.cc/NM2rKWhH/3.jpg",
+                    "https://i.postimg.cc/Jh2k4RFQ/4.jpg",
+                    "https://i.postimg.cc/W4Hkbsyg/Design_uden_navn_2026_01_29T192106_651.png",
+                    "https://i.postimg.cc/xd4zT9ZK/Design_uden_navn_2026_01_29T192159_924.png",
+                    "https://i.postimg.cc/ZqMdKJQ3/Design_uden_navn_2026_01_29T192341_754.png",
+                    "https://i.postimg.cc/zfcgXqQF/Design_uden_navn_2026_01_29T192501_452.png",
+                    "https://i.postimg.cc/FKBLsh6R/IMG_7051.jpg",
+                    "https://i.postimg.cc/nLPDcnWL/IMG_7103.jpg",
+                  ].map((src, i) => (
+                    <img key={`${rep}-${i}`} src={src} alt={`Result ${i + 1}`} className="result-thumb" loading="lazy" />
+                  ))).flat()}
+                </div>
+              </div>
+            </section>
+
+            {/* TESTIMONIALS */}
+            <section style={{ paddingBottom: "clamp(48px, 8vh, 80px)" }}>
+              <div style={{ textAlign: "center", marginBottom: 40 }}>
+                <span style={{ fontSize: 12, fontWeight: 600, color: "var(--gold)", letterSpacing: "0.06em", textTransform: "uppercase" }}>Testimonials</span>
+                <h2 style={{ fontFamily: "var(--serif)", fontSize: "clamp(24px, 3vw, 34px)", fontWeight: 400, marginTop: 8, letterSpacing: "-0.02em" }}>What our partners say</h2>
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 16 }}>
+                {[
+                  { text: "Fundal Media completely transformed our approach to Meta advertising. Their understanding of luxury positioning and seasonal strategy is unmatched. We went from struggling with ROAS to consistently hitting 6-8x returns.", name: "Mariel", role: "Founder & Creative Director", company: "Yvonne S" },
+                  { text: "Working with Elias and his team has been game-changing. They don't just run ads — they understand our brand DNA and how to communicate our sustainability story in a way that drives actual conversions.", name: "Kate", role: "Founder & CEO", company: "Kate June" },
+                  { text: "After working with three different agencies that treated us like any other e-commerce brand, finding Fundal was a revelation. They immediately understood the nuances of selling high-end accessories.", name: "Isabella", role: "Head of Strategy", company: "Design by Si" },
+                  { text: "The level of strategic thinking Fundal brings is exceptional. They helped us expand into 4 new European markets with localized strategies that actually worked.", name: "Jesper", role: "Founder", company: "Brahmaki" },
+                  { text: "What sets Fundal apart is their deep understanding of fashion creative. They know what visual language resonates with our target customer and how to write copy that sells the aspiration without being pushy.", name: "Mathilda", role: "Head of Digital Marketing", company: "Mathilda London" },
+                  { text: "Fundal's expertise in luxury fashion e-commerce is second to none. Their strategic guidance on positioning, creative, and customer journey optimization has been invaluable. We've seen 400%+ growth.", name: "Jessie", role: "Founder & Designer", company: "Angel Ruche" },
+                ].map((t, i) => (
+                  <div key={i} style={{ background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: 12, padding: 28 }}>
+                    <div style={{ fontSize: 32, fontFamily: "var(--serif)", color: "var(--gold)", lineHeight: 1, marginBottom: 12 }}>"</div>
+                    <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.7, marginBottom: 20 }}>{t.text}</p>
+                    <div>
+                      <div style={{ fontSize: 14, fontWeight: 700 }}>{t.name}</div>
+                      <div style={{ fontSize: 12, color: "var(--text-muted)" }}>{t.role}</div>
+                      <div style={{ fontSize: 12, color: "var(--gold)", fontWeight: 600, marginTop: 2 }}>{t.company}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* PRESS / AS SEEN IN */}
+            <section style={{ paddingBottom: "clamp(48px, 8vh, 80px)" }}>
+              <div style={{ textAlign: "center", marginBottom: 28 }}>
+                <span style={{ fontSize: 12, fontWeight: 600, color: "var(--text-muted)", letterSpacing: "0.06em", textTransform: "uppercase" }}>As Seen In</span>
+              </div>
+              <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "clamp(24px, 4vw, 48px)", flexWrap: "wrap" }}>
+                {[
+                  { src: "https://i.postimg.cc/59LVym0J/SALLY_SKOUFIS_Logo_Allure_medium.avif", alt: "Allure" },
+                  { src: "https://i.postimg.cc/CMkg541h/SALLY_SKOUFIS_Logo_Elle_medium.avif", alt: "Elle" },
+                  { src: "https://i.postimg.cc/0j8bLvDp/SALLY-SKOUFIS-Logo-Vogue-medium.avif", alt: "Vogue" },
+                  { src: "https://i.postimg.cc/qByTqGRd/SALLY_SKOUFIS_Logo_PFW_medium.avif", alt: "Paris Fashion Week" },
+                  { src: "https://i.postimg.cc/tRWjJzTX/SALLY_SKOUFIS_Logo_Vanity_Fair_medium.avif", alt: "Vanity Fair" },
+                ].map((p, i) => (
+                  <img key={i} src={p.src} alt={p.alt} style={{ maxWidth: 120, maxHeight: 40, objectFit: "contain", opacity: 0.5, transition: "opacity 0.3s" }} onMouseOver={e => e.target.style.opacity = 1} onMouseOut={e => e.target.style.opacity = 0.5} />
+                ))}
+              </div>
+            </section>
+
+            {/* PLATFORMS */}
+            <section style={{ paddingBottom: "clamp(48px, 8vh, 80px)" }}>
+              <div style={{ textAlign: "center", marginBottom: 28 }}>
+                <span style={{ fontSize: 12, fontWeight: 600, color: "var(--text-muted)", letterSpacing: "0.06em", textTransform: "uppercase" }}>Platforms We Master</span>
+              </div>
+              <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "clamp(24px, 4vw, 48px)", flexWrap: "wrap" }}>
+                {[
+                  { src: "https://i.postimg.cc/Z5zkNSpf/pngimg-com-meta-PNG7.png", alt: "Meta" },
+                  { src: "https://i.postimg.cc/9FkQBZgW/Pinterest_svg.png", alt: "Pinterest" },
+                  { src: "https://i.postimg.cc/xTZ1PMpf/snapchat_logo_snapchat_logo_transparent_snapchat_icon_transparent_free_free_png.webp", alt: "Snapchat" },
+                  { src: "https://i.postimg.cc/NjrfCFSZ/tiktok_logo_tikok_icon_transparent_tikok_app_logo_free_png.webp", alt: "TikTok" },
+                  { src: "https://i.postimg.cc/Kjjq69LM/klaviyo_logo_white.webp", alt: "Klaviyo" },
+                  { src: "https://i.postimg.cc/65Y6LT5N/Google-Ad-Words-logo.png", alt: "Google Ads" },
+                ].map((p, i) => (
+                  <img key={i} src={p.src} alt={p.alt} style={{ maxWidth: 100, maxHeight: 36, objectFit: "contain", opacity: 0.45, transition: "opacity 0.3s" }} onMouseOver={e => e.target.style.opacity = 1} onMouseOut={e => e.target.style.opacity = 0.45} />
+                ))}
+              </div>
+            </section>
+
             {/* TRUST / CTA */}
             <section style={{ paddingBottom: "clamp(80px, 12vh, 130px)", textAlign: "center" }}>
               <div style={{ background: "var(--bg-warm)", borderRadius: 16, padding: "clamp(40px, 6vw, 72px) clamp(24px, 4vw, 64px)" }}>
