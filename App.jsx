@@ -7,6 +7,8 @@ import { useState, useEffect } from "react";
 // Stripe checkout — calls /api/checkout.js serverless function
 async function stripeCheckout(priceKey, mode = "payment") {
   try {
+    // Meta Pixel: track InitiateCheckout
+    if (typeof fbq === 'function') fbq('track', 'InitiateCheckout', { content_ids: [priceKey], content_type: 'product' });
     const resp = await fetch("/api/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -114,15 +116,19 @@ export default function FundalTools() {
   const [freeGens, setFreeGens] = useState(3);
   const [vis, setVis] = useState(false);
 
-  useEffect(() => { setVis(false); requestAnimationFrame(() => requestAnimationFrame(() => setVis(true))); window.scrollTo(0, 0); }, [page]);
+  // Meta Pixel tracking
+  const fbTrack = (event, params) => { if (typeof fbq === 'function') fbq('track', event, params); };
+
+  useEffect(() => { setVis(false); requestAnimationFrame(() => requestAnimationFrame(() => setVis(true))); window.scrollTo(0, 0); fbTrack('ViewContent', { content_name: page }); }, [page]);
 
   const go = p => { setPage(p); setMobNav(false); setShowCart(false); };
-  const addCart = t => { if (!cart.find(c => c.id === t.id)) setCart([...cart, t]); };
+  const addCart = t => { if (!cart.find(c => c.id === t.id)) { setCart([...cart, t]); fbTrack('AddToCart', { content_ids: [t.id], content_name: t.name, value: t.price, currency: 'EUR' }); } };
   const rmCart = id => setCart(cart.filter(c => c.id !== id));
   const total = cart.reduce((s, c) => s + c.price, 0);
   const doGen = async () => {
     if (!cfg.brandName || !cfg.product || freeGens <= 0) return;
     setLoading(true); setCopies([]);
+    fbTrack('Lead', { content_name: 'AI Copy Generator', content_category: cfg.category });
     
     try {
       const resp = await fetch(API_URL, {
